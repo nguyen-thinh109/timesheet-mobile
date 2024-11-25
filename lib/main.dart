@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timesheet_mobile/pages/home.dart';
+import 'package:timesheet_mobile/pages/login.dart';
 // import 'package:flutter/services.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Timesheet Management'),
+      home: const LogInPage(),
     );
   }
 }
