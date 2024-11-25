@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timesheet_mobile/pages/home.dart';
-import 'package:timesheet_mobile/pages/login.dart';
-// import 'package:flutter/services.dart';
+import 'package:timesheet_mobile/pages/form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: const LogInPage(),
+      home: const LeaveFormPage(),
     );
   }
 }
