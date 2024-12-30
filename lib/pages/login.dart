@@ -1,4 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../shared/bottom_sheets.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({super.key});
@@ -22,7 +25,7 @@ class _LogInPageState extends State<LogInPage> {
     return Scaffold(
         body: Stack(children: [
       Image.asset(
-        'assets/images/bush.jpg',
+        'assets/images/login/bg.jpg',
         fit: BoxFit.cover,
         height: double.infinity,
         width: double.infinity,
@@ -30,18 +33,19 @@ class _LogInPageState extends State<LogInPage> {
       ),
       SafeArea(
         child: Padding(
-          padding:
-              const EdgeInsets.only(top: 0, left: 16, right: 16, bottom: 40),
+          padding: const EdgeInsets.only(top: 0, left: 24, right: 24, bottom: 40),
           child: Container(
             alignment: Alignment.topLeft,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Center(
-                  heightFactor: 1.5,
-                  child:
-                      Image.asset('assets/images/timesheet2.png', height: 70),
-                ),
+                Padding(
+                    padding: EdgeInsets.only(top: 80, left: 0, right: 24, bottom: 80),
+                    child: const Text(
+                      'Editors\' picks and our top buying'
+                      ' guides',
+                      style: TextStyle(color: Colors.white, fontSize: 40),
+                    )),
                 Expanded(
                   child: Flex(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -49,15 +53,36 @@ class _LogInPageState extends State<LogInPage> {
                       direction: Axis.vertical,
                       children: [
                         ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStateProperty.all<Color>(Colors.white30),
+                                foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                                minimumSize: WidgetStateProperty.all(Size(double.infinity, 48)),
+                                textStyle: WidgetStateProperty.all<TextStyle?>(TextStyle(fontWeight: FontWeight.w700, fontSize: 22))),
                             onPressed: () {
-                              print({
-                                pwdController.text,
-                                usernameController.text
-                              });
+                              if (kDebugMode) {
+                                print({pwdController.text, usernameController.text});
+                              }
 
-                              showBottomSheet(context);
+                              showLoginBottomSheet(context, usernameController, pwdController);
                             },
-                            child: const Text('Log in'))
+                            child: const Text('Log in')),
+                        SizedBox(height: 16),
+                        ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStateProperty.all<Color>(Colors.transparent),
+                              foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                              shadowColor: WidgetStateProperty.all<Color>(Colors.transparent),
+                              minimumSize: WidgetStateProperty.all(Size(double.infinity, 40)),
+                              textStyle: WidgetStateProperty.all<TextStyle?>(TextStyle(fontSize: 16)),
+                            ),
+                            onPressed: () {
+                              if (kDebugMode) {
+                                print('Create new account');
+                              }
+
+                              showCreateAccountBottomSheet(context, usernameController, pwdController);
+                            },
+                            child: const Text('Create new account')),
                       ]),
                 )
               ],
@@ -73,60 +98,5 @@ class _LogInPageState extends State<LogInPage> {
     pwdController.dispose();
     usernameController.dispose();
     super.dispose();
-  }
-
-  void showBottomSheet(BuildContext context) {
-    showModalBottomSheet<void>(
-      context: context,
-      useSafeArea: true,
-      builder: (BuildContext context) {
-        return Container(
-          height: 200,
-          color: Colors.amber,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-                  IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.close_rounded))
-                ]),
-                Expanded(
-                  child: Flex(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      direction: Axis.vertical,
-                      children: [
-                        TextField(
-                            controller: usernameController,
-                            decoration: const InputDecoration(
-                              label: Text('Username'),
-                            )),
-                        const SizedBox(height: 16),
-                        TextField(
-                            controller: pwdController,
-                            decoration:
-                                const InputDecoration(label: Text('Password')),
-                            obscuringCharacter: '•',
-                            obscureText: true),
-                        const SizedBox(height: 24),
-                        ElevatedButton(
-                            onPressed: () {
-                              print({
-                                pwdController.text,
-                                usernameController.text
-                              });
-                            },
-                            child: const Text('Log in'))
-                      ]),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
   }
 }
