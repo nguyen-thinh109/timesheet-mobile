@@ -11,8 +11,9 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
-  final pwdController = TextEditingController();
   final usernameController = TextEditingController();
+  final pwdController = TextEditingController();
+  final repeatedPwdController = TextEditingController();
 
   @override
   void initState() {
@@ -40,7 +41,7 @@ class _LogInPageState extends State<LogInPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                    padding: EdgeInsets.only(top: 80, left: 0, right: 24, bottom: 80),
+                    padding: EdgeInsets.only(top: 120, left: 0, right: 24, bottom: 50),
                     child: const Text(
                       'Editors\' picks and our top buying'
                       ' guides',
@@ -60,7 +61,7 @@ class _LogInPageState extends State<LogInPage> {
                                 textStyle: WidgetStateProperty.all<TextStyle?>(TextStyle(fontWeight: FontWeight.w700, fontSize: 22))),
                             onPressed: () {
                               if (kDebugMode) {
-                                print({pwdController.text, usernameController.text});
+                                print('Login Page - Go to login');
                               }
 
                               showLoginBottomSheet(context, usernameController, pwdController);
@@ -77,10 +78,10 @@ class _LogInPageState extends State<LogInPage> {
                             ),
                             onPressed: () {
                               if (kDebugMode) {
-                                print('Create new account');
+                                print('Login Page - Create new account');
                               }
 
-                              showCreateAccountBottomSheet(context, usernameController, pwdController);
+                              showCreateAccountBottomSheet(context, usernameController, pwdController, repeatedPwdController);
                             },
                             child: const Text('Create new account')),
                       ]),
@@ -97,6 +98,7 @@ class _LogInPageState extends State<LogInPage> {
   void dispose() {
     pwdController.dispose();
     usernameController.dispose();
+    repeatedPwdController.dispose();
     super.dispose();
   }
 }

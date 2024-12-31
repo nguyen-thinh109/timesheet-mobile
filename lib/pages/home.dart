@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-
-  final String title;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,32 +13,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   title: Image.asset('assets/images/timesheet.png', height: 70),
-      // ),
       body: Stack(children: [
-        Image.asset(
-          'assets/images/city1.png',
-          fit: BoxFit.cover,
-          height: double.infinity,
-          width: double.infinity,
-          alignment: Alignment.center,
-        ),
         SafeArea(
           child: Padding(
             padding:
-                const EdgeInsets.only(top: 0, left: 16, right: 16, bottom: 40),
+            const EdgeInsets.only(top: 0, left: 16, right: 16, bottom: 40),
             child: Container(
+              color: Color(0x00e4dbe0),
               alignment: Alignment.topLeft,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Center(
-                    heightFactor: 1.5,
-                    child:
-                        Image.asset('assets/images/timesheet2.png', height: 70),
-                  ),
                   const SizedBox(height: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.only(top: 32, bottom: 30),
                     child: Row(
                       children: [
-                        Image.asset('assets/images/leave.png', width: 30),
+                        Image.asset('assets/images/decor/leave.png', width: 30),
                         Padding(padding: const EdgeInsets.only(left: 8)),
                         Text('Thông tin chấm công:',
                             style: TextStyle(
@@ -73,14 +56,14 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index) {
                         return ListTile(
                           leading: index % 2 == 0
-                              ? Image.asset('assets/images/leave1.png',
-                                  width: 28)
+                              ? Image.asset('assets/images/decor/leave1.png',
+                              width: 28)
                               : Lottie.asset(
-                                  'assets/lotties/bird.json',
-                                  width: 28,
-                                  height: 28,
-                                  fit: BoxFit.fill,
-                                ),
+                            'assets/lotties/bird.json',
+                            width: 28,
+                            height: 28,
+                            fit: BoxFit.fill,
+                          ),
                           title: Text('Thứ $index',
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w700)),
@@ -99,6 +82,16 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+          ),
+        ),
+        Positioned(
+          left: 0,
+          bottom: 0,
+          child: Image.asset(
+            'assets/images/decor/capa8.png',
+            fit: BoxFit.contain,
+            width: double.infinity,
+            alignment: Alignment.center,
           ),
         ),
       ]),
