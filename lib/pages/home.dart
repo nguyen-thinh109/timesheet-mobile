@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,7 +16,7 @@ class _HomePageState extends State<HomePage> {
         SafeArea(
           child: Padding(
             padding:
-            const EdgeInsets.only(top: 0, left: 16, right: 16, bottom: 40),
+            const EdgeInsets.only(top: 0, left: 16, right: 16, bottom: 100),
             child: Container(
               color: Color(0x00e4dbe0),
               alignment: Alignment.topLeft,
@@ -40,11 +39,12 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.only(top: 32, bottom: 30),
                     child: Row(
                       children: [
-                        Image.asset('assets/images/decor/leave.png', width: 30),
+                        Image.asset('assets/images/decor/leave1.png', width: 24),
                         Padding(padding: const EdgeInsets.only(left: 8)),
                         Text('Thông tin chấm công:',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w500))
+                                fontSize: 16, fontWeight: FontWeight.w500)
+                        )
                       ],
                     ),
                   ),
@@ -55,15 +55,6 @@ class _HomePageState extends State<HomePage> {
                       itemCount: 30,
                       itemBuilder: (context, index) {
                         return ListTile(
-                          leading: index % 2 == 0
-                              ? Image.asset('assets/images/decor/leave1.png',
-                              width: 28)
-                              : Lottie.asset(
-                            'assets/lotties/bird.json',
-                            width: 28,
-                            height: 28,
-                            fit: BoxFit.fill,
-                          ),
                           title: Text('Thứ $index',
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w700)),
@@ -86,11 +77,11 @@ class _HomePageState extends State<HomePage> {
         ),
         Positioned(
           left: 0,
-          bottom: 0,
+          bottom: -120,
           child: Image.asset(
             'assets/images/decor/capa8.png',
             fit: BoxFit.contain,
-            width: double.infinity,
+            width: MediaQuery.sizeOf(context).width,
             alignment: Alignment.center,
           ),
         ),
